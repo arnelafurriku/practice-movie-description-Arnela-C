@@ -23,6 +23,15 @@ public class MovieService {
         Movie movie = new Movie(title, rating, description);
         return movieRepository.save(movie);
     }
+    public Movie generateAndSaveReview(Long id) {
+        Movie movie = movieRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Movie not found: " + id));
+
+        String review = geminiService.generateMovieReview(movie.getTitle(), movie.getRating());
+        movie.setReview(review);
+
+        return movieRepository.save(movie);
+    }
 
     public List<Movie> getAllMovies() {
         return movieRepository.findAll();

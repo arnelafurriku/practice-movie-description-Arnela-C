@@ -5,6 +5,7 @@ import org.example.CreateMovieRequest;
 import org.example.Movie;
 import org.example.MovieService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -26,5 +27,9 @@ public class MovieController {
     @GetMapping
     public List<Movie> getAllMovies() {
         return movieService.getAllMovies();
+    }
+    @PostMapping("/{id}/review")
+    public Movie generateReview(@PathVariable Long id) {
+        return movieService.generateAndSaveReview(id);
     }
 }

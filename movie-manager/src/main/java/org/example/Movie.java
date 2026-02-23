@@ -16,6 +16,10 @@ public class Movie {
     @Column(length = 2000)
     private String description;
 
+    @Column(length = 2000)
+    private String review;
+
+
     public Movie() {}
 
     public Movie(String title, double rating, String description) {
@@ -23,6 +27,8 @@ public class Movie {
         this.rating = rating;
         this.description = description;
     }
+    public String getReview() { return review; }
+    public void setReview(String review) { this.review = review; }
 
     public Long getId() { return id; }
     public String getTitle() { return title; }
